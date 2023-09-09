@@ -7,7 +7,7 @@ const ExpenseItem = (props) => {
     const removeExpenses = (id) => {
        dispatch(deleteExpenseItems(id,token));
     }
-
+   
    return (
     <li>
          <ExpenseDetails id={props.id} des={props.des} amount={props.amount} category={props.category} 

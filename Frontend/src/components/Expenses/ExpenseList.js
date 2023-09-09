@@ -7,7 +7,7 @@ const ExpenseList = (props) => {
    
     let data = Object.values(props.items || []);
   
-    
+
     
 
    
@@ -18,8 +18,8 @@ const ExpenseList = (props) => {
             <ul>
                
             {data.map((key) => (
-
-            <ExpenseItem key={key.id} des={key.description} id={key.id}
+           
+            <ExpenseItem key={key._id} des={key.description} id={key._id}
             amount={key.amount} category={key.category} />
             ))} 
             

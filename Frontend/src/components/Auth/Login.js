@@ -35,8 +35,7 @@ const Login = () => {
           if(response) {
             
             dispatch(setTokenId(response.data));
-            alert('User logged in')
-            // history.replace('/home');
+            history.replace('/home');
             //window.location.reload();
           }
         } catch(err) {

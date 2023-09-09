@@ -45,7 +45,7 @@ export const deleteExpenseItems = (id,token) => {
         try {
                 
             const expenseData = await deleteData();
-            dispatch(expenseActions.deleteExpense(expenseData.id))
+            dispatch(expenseActions.deleteExpense(expenseData._id))
            } catch (error) {
             throw new Error(error);
            

@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
-// const expenseRouter = require('./routes/expense');
+const expenseRouter = require('./routes/expense');
 // const purchaseRouter = require('./routes/purchase');
 // const premiumRouter = require('./routes/premium');
 // const passwordRouter = require('./routes/forgetpassword');
@@ -22,17 +22,17 @@ app.use(helmet());
 app.use(morgan('combined', {stream: accessLogs}));
 app.use(bodyParser.json({ extended: false }));
 app.use('/user',userRoutes);
-// app.use(expenseRouter);
+app.use(expenseRouter);
 // app.use('/purchase', purchaseRouter);
 // app.use('/premium',premiumRouter);
 // app.use('/password',passwordRouter);
-app.use(express.static(
-    path.join(__dirname,"../Frontend/build")));
-app.get("*", (req, res) => {
-        res.sendFile(
-          path.join(__dirname, "../Frontend/build/index.html")
-        );
-      });
+// app.use(express.static(
+//     path.join(__dirname,"../Frontend/build")));
+// app.get("*", (req, res) => {
+//         res.sendFile(
+//           path.join(__dirname, "../Frontend/build/index.html")
+//         );
+//       });
 
 // User.hasMany(Expense);
 // Expense.belongsTo(User);

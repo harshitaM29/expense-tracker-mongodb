@@ -15,17 +15,17 @@ function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
   const renderLoader = () => <p>Loading</p>;
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
 
-   if(isLoggedIn) {
-    setTimeout(() => {
-      dispatch(fetchPremiumLeaderboardData(token))
-    },1000)
+  //  if(isLoggedIn) {
+  //   setTimeout(() => {
+  //     dispatch(fetchPremiumLeaderboardData(token))
+  //   },1000)
     
-   }
+  //  }
    
-  },[dispatch,isLoggedIn]);
+  // },[dispatch,isLoggedIn]);
   
 
 
@@ -40,11 +40,11 @@ function App() {
     <Route path = '/signup'>
       <SignUpPage />
     </Route>
-    {/* <Route path = '/home' >
+    <Route path = '/home' >
      {isLoggedIn && <HomePage /> }
      {!isLoggedIn && <Redirect to='/' />}
     </Route>
-    <Route path = '/leaderboard'>
+    {/* <Route path = '/leaderboard'>
     <Suspense fallback={renderLoader()}>
      {isLoggedIn && <Leaderboard /> }
      {!isLoggedIn && <Redirect to='/' />}
@@ -55,14 +55,14 @@ function App() {
       <ForgetPassword />
       </Suspense>
       
-    </Route> */}
-    {/* <Route path='/report'>
+    </Route> 
+     <Route path='/report'>
     <Suspense fallback={renderLoader()}>
      {isLoggedIn && <Report /> }
       {!isLoggedIn && <Redirect to='/' />}
       </Suspense>
-    </Route> */}
-   
+    </Route>
+    */}
    </Switch>
   );
 }
