@@ -8,7 +8,7 @@ const userRoutes = require('./routes/user');
 const expenseRouter = require('./routes/expense');
 const purchaseRouter = require('./routes/purchase');
 const premiumRouter = require('./routes/premium');
-// const passwordRouter = require('./routes/forgetpassword');
+const passwordRouter = require('./routes/forgetpassword');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
@@ -25,7 +25,7 @@ app.use('/user',userRoutes);
 app.use(expenseRouter);
 app.use('/purchase', purchaseRouter);
 app.use('/premium',premiumRouter);
-// app.use('/password',passwordRouter);
+app.use('/password',passwordRouter);
 // app.use(express.static(
 //     path.join(__dirname,"../Frontend/build")));
 // app.get("*", (req, res) => {

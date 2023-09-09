@@ -15,17 +15,17 @@ function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
   const renderLoader = () => <p>Loading</p>;
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
 
-   if(isLoggedIn) {
-    setTimeout(() => {
-      dispatch(fetchPremiumLeaderboardData(token))
-    },1000)
+  //  if(isLoggedIn) {
+  //   setTimeout(() => {
+  //     dispatch(fetchPremiumLeaderboardData(token))
+  //   },1000)
     
-   }
+  //  }
    
-  },[dispatch,isLoggedIn]);
+  // },[dispatch,isLoggedIn]);
   
 
 
@@ -50,11 +50,11 @@ function App() {
      {!isLoggedIn && <Redirect to='/' />}
       </Suspense>
     </Route>
-  { /*  <Route path='/forget'>
+   <Route path='/forget'>
       <Suspense fallback={renderLoader()}>
       <ForgetPassword />
       </Suspense>
-      
+ 
     </Route> 
      <Route path='/report'>
     <Suspense fallback={renderLoader()}>
@@ -62,7 +62,7 @@ function App() {
       {!isLoggedIn && <Redirect to='/' />}
       </Suspense>
     </Route>
-    */}
+ 
    </Switch>
   );
 }

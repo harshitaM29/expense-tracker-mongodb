@@ -1,5 +1,6 @@
 const { response } = require('express');
 const FilesDownloaded = require('../models/filesdownloaded');
+const Expense = require('../models/expense');
 const AWS = require('aws-sdk');
 require('dotenv').config();
 
@@ -35,27 +36,29 @@ function uploadToS3(data,filename) {
 }
 exports.downloadReport = async(req,res,next) => {
     try {
-    const expenseList = await req.user.getExpenses();
+    const expenseList = await Expense.find({ userId: req.user._id});
     const stringifiedExpenses = JSON.stringify(expenseList);
-    const userId = req.user.id;
+    const userId = req.user._id;
     const filename = `Expense${userId}/${new Date()}.txt`;
     const fileURL = await uploadToS3(stringifiedExpenses,filename);
-    const filesDownloadedData = await FilesDownloaded.create({
+    const filesDownloadedData = new FilesDownloaded({
         fileURL:fileURL,
         userId:userId,
         filename:filename
-    })
+    });
+    await filesDownloadedData.save();
     res.status(200).json({ fileURL, succues:true})
     
     }catch(err) {
+        console.log(err)
         res.status(500).json({ fileURL:'', success:false, err:err})
     }
 }
 
 exports.getFileDownloadedData = async(req,res,next) => {
-    const id = req.user.id;
+    const id = req.user._id;
     try {
-            const data = await FilesDownloaded.findAll({ attributes:['fileURL'], where: {userId : id}});
+            const data = await FilesDownloaded.find({ userId : id }).select("fileURL");
             res.status(200).json(data);
 
     }catch(err){
